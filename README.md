@@ -58,7 +58,7 @@ You can use the [NPC ID plugin by Xrio](https://github.com/XrioBtw/npc-id) in th
 
 ### Getting NPC IDs from wiki
 
-Create and login to a [osrs wiki](oldschool.runescape.wiki) account. Go to [Preferences -> Gadgets](https://oldschool.runescape.wiki/w/Special:Preferences#mw-prefsection-gadgets). Check "Display advanced data in infoboxes, such as item IDs." and save your preferences. Now, when you view an NPC page, you will see the NPC's ID in the infobox.
+Create and login to a [osrs wiki](https://oldschool.runescape.wiki/) account. Go to [Preferences -> Gadgets](https://oldschool.runescape.wiki/w/Special:Preferences#mw-prefsection-gadgets). Check "Display advanced data in infoboxes, such as item IDs." and save your preferences. Now, when you view an NPC page, you will see the NPC's ID in the infobox.
 
 ## Author
 
