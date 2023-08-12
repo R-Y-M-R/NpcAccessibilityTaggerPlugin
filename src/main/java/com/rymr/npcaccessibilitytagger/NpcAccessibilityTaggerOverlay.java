@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.Optional;
 
 import net.runelite.api.Client;
+import net.runelite.api.Model;
 import net.runelite.api.NPC;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
@@ -54,7 +55,7 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
     public Dimension render(Graphics2D graphics) {
         if (config.appendWordToNPC()) {
             for (NPC npc : client.getCachedNPCs()) {
-                if (npc == null) {
+                if (!shouldShow(npc)) {
                     continue;
                 }
                 Optional<StandardEntry> matchingEntry = NpcAccessibilityTaggerParser.getInstance().getEntries().stream().filter(entry -> entry.getId() == npc.getId()).findAny();
@@ -66,11 +67,8 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
 
     private void renderNpcOverlay(Graphics2D graphics, NPC npc, StandardEntry entry) {
         final Point textLocation = npc.getCanvasTextLocation(graphics, entry.getText(), npc.getLogicalHeight() + config.heightAboveNPC());
-
         graphics.setFont(config.fontStyle().getFont().deriveFont((float) config.fontSize()));
-
         if (textLocation != null) {
-
             if (config.enableCustomTextColor() && entry instanceof ExtendedEntry) {
                 OverlayUtil.renderTextLocation(graphics, textLocation, entry.getText(), ((ExtendedEntry) entry).getColor());
             } else {
@@ -78,5 +76,26 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
             }
         }
     }
-}
 
+    // Copied from Buchus.
+    private boolean shouldShow(NPC npc) {
+        if (npc == null || npc.getComposition() == null) {
+            return false;
+        }
+        if (npc.getName() != null && (npc.getName().equals("") || npc.getName().equals("null"))) {
+            return false;
+        }
+        return !isInvisible(npc.getModel());
+    }
+
+    // Copied from Skretzo
+    private boolean isInvisible(Model model) {
+        // If all the values in model.getFaceColors3() are -1 then the model is invisible
+        for (int value : model.getFaceColors3()) {
+            if (value != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
