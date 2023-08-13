@@ -55,7 +55,7 @@ public class NpcAccessibilityTaggerParser {
         for (String entry : Text.fromCSV(input)) {
             try {
                 String[] parts = entry.split(":");
-                log.info("Entry: "+entry+"\nParts: " + parts.length);
+//                log.info("Entry: "+entry+"\nParts: " + parts.length);
                 if (parts.length == 2) {
                     entries.add(new StandardEntry(Integer.parseInt(parts[0].trim()), parts[1].trim()));
                 } else if (parts.length == 3) {

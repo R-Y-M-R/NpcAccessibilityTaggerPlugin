@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import java.awt.*;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Model;
 import net.runelite.api.NPC;
@@ -39,6 +40,7 @@ import net.runelite.client.ui.overlay.OverlayUtil;
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+@Slf4j
 public class NpcAccessibilityTaggerOverlay extends Overlay {
     private final Client client;
     private final NpcAccessibilityTaggerConfig config;
@@ -56,6 +58,7 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
         if (config.appendWordToNPC()) {
             for (NPC npc : client.getCachedNPCs()) {
                 if (!shouldShow(npc)) {
+                    log.info("NPC is null or invisible: " + npc.getId());
                     continue;
                 }
                 Optional<StandardEntry> matchingEntry = NpcAccessibilityTaggerParser.getInstance().getEntries().stream().filter(entry -> entry.getId() == npc.getId()).findAny();
