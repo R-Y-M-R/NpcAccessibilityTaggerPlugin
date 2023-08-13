@@ -58,7 +58,6 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
         if (config.appendWordToNPC()) {
             for (NPC npc : client.getCachedNPCs()) {
                 if (!shouldShow(npc)) {
-                    log.info("NPC is null or invisible: " + npc.getId());
                     continue;
                 }
                 Optional<StandardEntry> matchingEntry = NpcAccessibilityTaggerParser.getInstance().getEntries().stream().filter(entry -> entry.getId() == npc.getId()).findAny();

@@ -62,7 +62,7 @@ public class NpcAccessibilityTaggerParser {
                     entries.add(new ExtendedEntry(Integer.parseInt(parts[0].trim()), parts[1].trim(), Color.decode(appendMissingPound(parts[2].trim()))));
                 }
             } catch (Exception e) {
-                log.warn("Error parsing entry: " + entry + "\n"+ e.getMessage());
+                log.warn("Parse exception: \"" + entry + "\"\n" + e.getMessage());
             }
         }
         return entries;

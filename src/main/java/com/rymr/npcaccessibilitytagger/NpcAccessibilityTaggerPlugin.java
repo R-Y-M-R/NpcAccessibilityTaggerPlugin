@@ -61,13 +61,13 @@ public class NpcAccessibilityTaggerPlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        log.info("NPC Tagger startup!");
+        log.info("Started plugin");
         updateAddition();
     }
 
     @Override
     protected void shutDown() throws Exception {
-        log.info("NPC Tagger shutdown!");
+        log.info("Shutdown plugin");
         updateRemoval();
     }
 
