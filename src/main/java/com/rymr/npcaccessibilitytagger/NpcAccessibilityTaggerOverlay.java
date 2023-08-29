@@ -84,7 +84,7 @@ public class NpcAccessibilityTaggerOverlay extends Overlay {
         if (npc == null || npc.getComposition() == null) {
             return false;
         }
-        if (npc.getName() != null && (npc.getName().equals("") || npc.getName().equals("null"))) {
+        if (npc.getName() == null || npc.getName().isEmpty() || npc.getName().equals("null")) {
             return false;
         }
         return !isInvisible(npc.getModel());
